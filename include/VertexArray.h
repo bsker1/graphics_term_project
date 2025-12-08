@@ -11,7 +11,7 @@ class VertexArray {
   public:
     VertexArray();
 
-    void LinkAttrib(VertexBuffer vbo, const GLuint layout, const GLuint numComponents, const GLenum type, const GLsizeiptr stride, const void* offset);
+    void LinkAttrib(VertexBuffer vbo, const GLuint layout, const GLuint numComponentsPerVertex, const GLenum type, const GLsizeiptr stride, const void* offset);
     void Bind();
     void Unbind();
     void Delete();

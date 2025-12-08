@@ -8,7 +8,7 @@ class IndexBuffer {
     GLuint id;
   
   public:
-    IndexBuffer(const GLuint* indicies, const GLsizeiptr size);
+    IndexBuffer(const GLuint* indices, const GLsizeiptr size);
 
     void Bind();
     void Unbind();

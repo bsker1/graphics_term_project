@@ -1,9 +1,9 @@
 #include "IndexBuffer.h"
 
-IndexBuffer::IndexBuffer(const GLuint* indicies, const GLsizeiptr size) {
+IndexBuffer::IndexBuffer(const GLuint* indices, const GLsizeiptr size) {
   glGenBuffers(1, &id);
   glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, id);
-  glBufferData(GL_ELEMENT_ARRAY_BUFFER, size, indicies, GL_STATIC_DRAW);
+  glBufferData(GL_ELEMENT_ARRAY_BUFFER, size, indices, GL_STATIC_DRAW);
 }
 
 void IndexBuffer::Bind() {
