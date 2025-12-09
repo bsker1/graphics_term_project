@@ -2,53 +2,59 @@
 
 #include <iostream>
 
-Mesh::Mesh(GLfloat* inVertices, const GLsizeiptr inVerticesSize, GLuint* inIndices, const GLsizeiptr inIndicesSize, const GLuint numAttributes, const GLuint numDimensions, const GLuint numColorComponents, const GLuint numTextureCoords, const GLuint numNormalDimensions, const char* texFileName, Shader& shader) {
-  // Assign vertex/index arrays to passed pointers
-  vertices = inVertices;
-  verticesSize = inVerticesSize;
-  indices = inIndices;
-  indicesSize = inIndicesSize;
-  
-  // Bind VAO of mesh
-  vao.Bind();
+Mesh::Mesh(GLfloat* inVertices, const GLsizeiptr inVerticesSize,
+  GLuint* inIndices, const GLsizeiptr inIndicesSize,
+  const GLuint numDimensions, const GLuint numColorComponents,
+  const GLuint numTextureCoords, const GLuint numNormalDimensions,
+  const char* texFileName, Shader& shader) {
+    // Assign vertex/index arrays to passed pointers
+    vertices = inVertices;
+    verticesSize = inVerticesSize;
+    indices = inIndices;
+    indicesSize = inIndicesSize;
+    
+    // Bind VAO of mesh
+    vao.Bind();
 
-  // Create vertex and index buffers for triangle, load vertices and indices to currently bound VAO
-  VertexBuffer vbo(vertices, verticesSize);
-  IndexBuffer ibo(indices, indicesSize);
-  // Store location of vbo/ibo
-  VBOptr = &vbo;
-  IBOptr = &ibo;
+    // Create vertex and index buffers for triangle, load vertices and indices to currently bound VAO
+    VertexBuffer vbo(vertices, verticesSize);
+    IndexBuffer ibo(indices, indicesSize);
+    // Store location of vbo/ibo
+    VBOptr = &vbo;
+    IBOptr = &ibo;
 
-  // Calculate stride for linking attributes
-  GLuint stride = (numDimensions + numColorComponents + numTextureCoords + numNormalDimensions) * sizeof(GLfloat);
+    // Calculate stride for linking attributes
+    GLuint stride = (numDimensions + numColorComponents + numTextureCoords + numNormalDimensions) * sizeof(GLfloat);
 
-  // Link attributes in VAO with provided layout
-  vao.LinkAttrib(vbo, 0, numDimensions, GL_FLOAT, stride, (void*)0);
-  // Link remaining attributes if provided
-  GLuint offset = 0;
-  if (numColorComponents) {
-    offset += numDimensions;
-    vao.LinkAttrib(vbo, 1, numColorComponents, GL_FLOAT, stride, (void*)(offset * sizeof(GLfloat)));
-  }
-  if (numTextureCoords) {
-    offset += numColorComponents;
-    vao.LinkAttrib(vbo, 2, numTextureCoords, GL_FLOAT, stride, (void*)(offset * sizeof(GLfloat)));
-  }
-  if (numNormalDimensions) {
-    offset += numTextureCoords;
-    vao.LinkAttrib(vbo, 3, numNormalDimensions, GL_FLOAT, stride, (void*)(offset * sizeof(GLfloat)));
-  }
+    // Link attributes in VAO with provided layout
+    vao.LinkAttrib(vbo, 0, numDimensions, GL_FLOAT, stride, (void*)0);
+    // Link remaining attributes if provided
+    GLuint offset = 0;
+    if (numColorComponents) {
+      offset += numDimensions;
+      vao.LinkAttrib(vbo, 1, numColorComponents, GL_FLOAT, stride, (void*)(offset * sizeof(GLfloat)));
+    }
+    if (numTextureCoords) {
+      offset += numColorComponents;
+      vao.LinkAttrib(vbo, 2, numTextureCoords, GL_FLOAT, stride, (void*)(offset * sizeof(GLfloat)));
+    }
+    if (numNormalDimensions) {
+      offset += numTextureCoords;
+      vao.LinkAttrib(vbo, 3, numNormalDimensions, GL_FLOAT, stride, (void*)(offset * sizeof(GLfloat)));
+    }
 
-  // Unbind OpenGL objects before program loop
-  vao.Unbind();
-  vbo.Unbind();
-  ibo.Unbind();
+    // Unbind OpenGL objects before program loop
+    vao.Unbind();
+    vbo.Unbind();
+    ibo.Unbind();
 
-  // Apply image to OpenGL texture if one is provided
-  if (texFileName != nullptr) {
-    // Get filepath for texture image
+    // Set texture file path to provided filename, default if not provided
     std::string texFilePath = RESOURCES_PATH "textures/";
-    texFilePath += texFileName;
+    if (texFileName != nullptr) {
+      texFilePath += texFileName;
+    } else {
+      texFilePath += "default.png";
+    }
 
     // Apply texture image to OpenGL texture
     Texture tex0(texFilePath, GL_TEXTURE_2D, 0, GL_RGBA);
@@ -56,7 +62,6 @@ Mesh::Mesh(GLfloat* inVertices, const GLsizeiptr inVerticesSize, GLuint* inIndic
     tex0ptr = &tex0;
     // Apply texture to tex0 uniform in frag shader
     tex0.TexUnit(shader, "tex0", 0);
-  }
 }
 
 void Mesh::Draw(Shader& shader) {
