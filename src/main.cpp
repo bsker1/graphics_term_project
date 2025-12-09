@@ -12,15 +12,15 @@
 
 
 
-// Define vertices and indices for triangle
-GLfloat triangleVertices[] = {
-  -0.5f, -0.5f, 0.0f,     1.0f, 1.0f, 1.0f,
-   0.5f, -0.5f, 0.0f,     1.0f, 1.0f, 1.0f,
-   0.5f,  0.5f, 0.0f,     1.0f, 1.0f, 1.0f,
-  -0.5f,  0.5f, 0.0f,     1.0f, 1.0f, 1.0f
+// Define vertices and indices for object
+GLfloat objectVertices[] = {
+  -0.5f, -0.5f, 0.0f,     1.0f, 0.0f, 0.0f,     0.0f, 0.0f,
+   0.5f, -0.5f, 0.0f,     0.0f, 1.0f, 0.0f,     1.0f, 0.0f,
+   0.5f,  0.5f, 0.0f,     0.0f, 0.0f, 1.0f,     1.0f, 1.0f,
+  -0.5f,  0.5f, 0.0f,     1.0f, 1.0f, 1.0f,     0.0f, 1.0f
 };
 
-GLuint triangleIndices[] = {
+GLuint objectIndices[] = {
   0, 1, 2,
   2, 3, 0
 };
@@ -63,13 +63,13 @@ int main() {
     SETUP CODE HERE
      --------------- */
   
-  // Generate shader program from triangle shader files
-  std::string triangleVertPath = RESOURCES_PATH "shaders/triangle.vert";
-  std::string triangleFragPath = RESOURCES_PATH "shaders/triangle.frag";
-  Shader triangleShader(triangleVertPath, triangleFragPath);
+  // Generate shader program from object shader files
+  std::string objectVertPath = RESOURCES_PATH "shaders/object.vert";
+  std::string objectFragPath = RESOURCES_PATH "shaders/object.frag";
+  Shader objectShader(objectVertPath, objectFragPath);
 
-  // Create triangle mesh
-  Mesh triangleMesh(triangleVertices, sizeof(triangleVertices), triangleIndices, sizeof(triangleIndices), 2, 3, 3, 0, 0);
+  // Create object mesh
+  Mesh objectMesh(objectVertices, sizeof(objectVertices), objectIndices, sizeof(objectIndices), 3, 3, 3, 2, 0, "metal.png", objectShader);
 
 
 
@@ -85,13 +85,8 @@ int main() {
       DRAW CODE HERE
        -------------- */
 
-    // Select triangle shader
-    triangleShader.Activate();
-
-    // Draw triangle mesh
-    triangleMesh.Draw();
-
-    
+    // Draw object mesh with object shader
+    objectMesh.Draw(objectShader);
 
     // Swap front and back buffers
     glfwSwapBuffers(window);
@@ -103,8 +98,8 @@ int main() {
 
 
   // Cleanup OpenGL objects from memory
-  triangleShader.Delete();
-  triangleMesh.Delete();
+  objectShader.Delete();
+  objectMesh.Delete();
 
   // Cleanup GLFW window object
   glfwDestroyWindow(window);

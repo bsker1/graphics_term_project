@@ -13,6 +13,8 @@ class Texture {
   public:
     Texture(const std::string imgFilePath, const GLenum texType, const GLuint slot, const GLenum format);
 
+    GLuint* GetIDptr() { return &id; }
+
     void TexUnit(Shader& shaderProgram, const char* uniform, const GLuint unit);
     void Bind();
     void Unbind();

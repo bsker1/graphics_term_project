@@ -1,6 +1,8 @@
 #include "Mesh.h"
 
-Mesh::Mesh(GLfloat* inVertices, const GLsizeiptr inVerticesSize, GLuint* inIndices, const GLsizeiptr inIndicesSize, const GLuint numAttributes, const GLuint numDimensions, const GLuint numColorComponents, const GLuint numTextureCoords, const GLuint numNormalDimensions) {
+#include <iostream>
+
+Mesh::Mesh(GLfloat* inVertices, const GLsizeiptr inVerticesSize, GLuint* inIndices, const GLsizeiptr inIndicesSize, const GLuint numAttributes, const GLuint numDimensions, const GLuint numColorComponents, const GLuint numTextureCoords, const GLuint numNormalDimensions, const char* texFileName, Shader& shader) {
   // Assign vertex/index arrays to passed pointers
   vertices = inVertices;
   verticesSize = inVerticesSize;
@@ -41,9 +43,27 @@ Mesh::Mesh(GLfloat* inVertices, const GLsizeiptr inVerticesSize, GLuint* inIndic
   vao.Unbind();
   vbo.Unbind();
   ibo.Unbind();
+
+  // Apply image to OpenGL texture if one is provided
+  if (texFileName != nullptr) {
+    // Get filepath for texture image
+    std::string texFilePath = RESOURCES_PATH "textures/";
+    texFilePath += texFileName;
+
+    // Apply texture image to OpenGL texture
+    Texture tex0(texFilePath, GL_TEXTURE_2D, 0, GL_RGBA);
+    // Store location of texture
+    tex0ptr = &tex0;
+    // Apply texture to tex0 uniform in frag shader
+    tex0.TexUnit(shader, "tex0", 0);
+  }
 }
 
-void Mesh::Draw() {
+void Mesh::Draw(Shader& shader) {
+  shader.Activate();
+  if (tex0ptr != nullptr) {
+    tex0ptr->Bind();
+  }
   vao.Bind();
   glDrawElements(GL_TRIANGLES, indicesSize / sizeof(GLuint), GL_UNSIGNED_INT, 0);
 }
@@ -52,4 +72,7 @@ void Mesh::Delete() {
   vao.Delete();
   glDeleteBuffers(1, VBOptr->GetIDptr());
   glDeleteBuffers(1, IBOptr->GetIDptr());
+  if (tex0ptr != nullptr) {
+    glDeleteTextures(1, tex0ptr->GetIDptr());
+  }
 }
