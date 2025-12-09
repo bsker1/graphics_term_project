@@ -2,7 +2,6 @@
 #include "glfw/glfw3.h"
 
 #include "Mesh.h"
-#include "Shader.h"
 
 
 
@@ -14,10 +13,10 @@
 
 // Define vertices and indices for object
 GLfloat objectVertices[] = {
-  -0.5f, -0.5f, 0.0f,     1.0f, 0.0f, 0.0f,
-   0.5f, -0.5f, 0.0f,     0.0f, 1.0f, 0.0f,
-   0.5f,  0.5f, 0.0f,     0.0f, 0.0f, 1.0f,
-  -0.5f,  0.5f, 0.0f,     1.0f, 1.0f, 1.0f
+  -0.5f, -0.5f, 0.0f,     1.0f, 0.0f, 0.0f,     0.0f, 0.0f,
+   0.5f, -0.5f, 0.0f,     0.0f, 1.0f, 0.0f,     1.0f, 0.0f,
+   0.5f,  0.5f, 0.0f,     0.0f, 0.0f, 1.0f,     1.0f, 1.0f,
+  -0.5f,  0.5f, 0.0f,     1.0f, 1.0f, 1.0f,     0.0f, 1.0f
 };
 
 GLuint objectIndices[] = {
@@ -70,7 +69,7 @@ int main() {
 
   // Create object mesh
   Mesh objectMesh(objectVertices, sizeof(objectVertices), objectIndices,
-    sizeof(objectIndices), 3, 3, 0, 0, nullptr, objectShader);
+    sizeof(objectIndices), 3, 3, 2, 0, "metal.png", objectShader);
 
 
 

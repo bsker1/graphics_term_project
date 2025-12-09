@@ -1,7 +1,5 @@
 #include "Mesh.h"
 
-#include <iostream>
-
 Mesh::Mesh(GLfloat* inVertices, const GLsizeiptr inVerticesSize,
   GLuint* inIndices, const GLsizeiptr inIndicesSize,
   const GLuint numDimensions, const GLuint numColorComponents,
