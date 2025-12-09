@@ -2,6 +2,10 @@
 #include "glfw/glfw3.h"
 
 #include "Mesh.h"
+#include "Texture.h"
+#include "Camera.h"
+
+#include <iostream>
 
 
 
@@ -69,21 +73,41 @@ int main() {
 
   // Create object mesh
   Mesh objectMesh(objectVertices, sizeof(objectVertices), objectIndices,
-    sizeof(objectIndices), 3, 3, 2, 0, "metal.png", objectShader);
+    sizeof(objectIndices), 3, 3, 2, 0);
+  
+  // Load metal image into OpenGL texture
+  std::string metalTexFilePath = RESOURCES_PATH "textures/metal.png";
+  Texture metalTex(metalTexFilePath, GL_TEXTURE_2D, 0, GL_RGBA);
+  // Apply texture to tex0 uniform in shader
+  metalTex.TexUnit(objectShader, "tex0", 0);
+  
+  Camera camera(RESOLUTION_X, RESOLUTION_Y, glm::vec3(0.0f, 0.0f, 2.0f));
 
 
+
+
+  glEnable(GL_DEPTH_TEST);
 
   // Main program loop
   while (!glfwWindowShouldClose(window)) {
     // Clear window to black
-    glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-    glClear(GL_COLOR_BUFFER_BIT);
+    glClearColor(0.07f, 0.13f, 0.17f, 1.0f);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+    objectShader.Activate();
+
+    camera.Inputs(window);
+    camera.UpdateMatrix(45.0f, RESOLUTION_X / (float)RESOLUTION_Y, 0.1f, 100.0f);
+    camera.SetMatrixUni(objectShader, "camMatrix");
 
     
 
     /* --------------
       DRAW CODE HERE
        -------------- */
+
+    // Bind metal texture for object
+    metalTex.Bind();
 
     // Draw object mesh with object shader
     objectMesh.Draw(objectShader);

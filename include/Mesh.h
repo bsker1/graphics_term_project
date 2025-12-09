@@ -3,7 +3,7 @@
 
 #include "VertexArray.h"
 #include "IndexBuffer.h"
-#include "Texture.h"
+#include "Shader.h"
 
 class Mesh {
   private:
@@ -11,7 +11,6 @@ class Mesh {
     GLuint verticesSize;
     GLuint* indices;
     GLuint indicesSize;
-    Texture* tex0ptr = nullptr;
     
     VertexArray vao;
     VertexBuffer* VBOptr;
@@ -21,8 +20,7 @@ class Mesh {
     Mesh(GLfloat* inVertices, const GLsizeiptr inVerticesSize,
       GLuint* inIndices, const GLsizeiptr inIndicesSize,
       const GLuint numDimensions, const GLuint numColorComponents,
-      const GLuint numTextureCoords, const GLuint numNormalDimensions,
-      const char* texFileName, Shader& shader);
+      const GLuint numTextureCoords, const GLuint numNormalDimensions);
 
     void Draw(Shader& shader);
     void Delete();

@@ -19,7 +19,7 @@ void Camera::UpdateMatrix(const float yFovDegree, const float aspect, const floa
   cameraMatrix = proj * view;
 }
 
-void Camera::SetMatrix(Shader& shaderProgram, const char* uniform) {
+void Camera::SetMatrixUni(Shader& shaderProgram, const char* uniform) {
   // Apply projection and view matrix to provided uniform for vertex shader
   GLuint uniID = glGetUniformLocation(shaderProgram.GetID(), uniform);
   glUniformMatrix4fv(uniID, 1, GL_FALSE, glm::value_ptr(cameraMatrix));
@@ -36,10 +36,10 @@ void Camera::Inputs(GLFWwindow* window) {
 
   // WASD to move forward/back, strafe left/right
   if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS) {
-    position += speed * orientation;
+    position += speed * glm::vec3(orientation.x, 0.0f, orientation.z);
   }
   if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS) {
-    position += speed * -orientation;
+    position += speed * -glm::vec3(orientation.x, 0.0f, orientation.z);
   }
   if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS) {
     position += speed * -glm::normalize(glm::cross(orientation, upDirection));

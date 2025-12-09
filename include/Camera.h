@@ -32,7 +32,7 @@ class Camera {
     glm::vec3 GetPosition() { return position; }
     
     void UpdateMatrix(const float yFovDegree, const float aspect, const float nearPlane, const float farPlane);
-    void SetMatrix(Shader& shaderProgram, const char* uniform);
+    void SetMatrixUni(Shader& shaderProgram, const char* uniform);
     void Inputs(GLFWwindow* window);
 };
 
