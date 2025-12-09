@@ -10,6 +10,8 @@ class IndexBuffer {
   public:
     IndexBuffer(const GLuint* indices, const GLsizeiptr size);
 
+    GLuint* GetIDptr() { return &id; }
+
     void Bind();
     void Unbind();
     void Delete();

@@ -12,6 +12,7 @@ class Shader {
     GLuint id;
 
   public:
+    Shader() { id = 0; }
     Shader(const std::string vertexFile, const std::string fragmentFile);
 
     GLuint GetID() { return id; }

@@ -10,6 +10,8 @@ class VertexBuffer {
   public:
     VertexBuffer(const GLfloat* vertices, const GLsizeiptr size);
 
+    GLuint* GetIDptr() { return &id; }
+
     void Bind();
     void Unbind();
     void Delete();
