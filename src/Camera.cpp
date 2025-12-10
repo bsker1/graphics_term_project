@@ -36,10 +36,10 @@ void Camera::Inputs(GLFWwindow* window) {
 
   // WASD to move forward/back, strafe left/right
   if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS) {
-    position += speed * glm::vec3(orientation.x, 0.0f, orientation.z);
+    position += speed * glm::normalize(glm::vec3(orientation.x, 0.0f, orientation.z));
   }
   if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS) {
-    position += speed * -glm::vec3(orientation.x, 0.0f, orientation.z);
+    position += speed * -glm::normalize(glm::vec3(orientation.x, 0.0f, orientation.z));
   }
   if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS) {
     position += speed * -glm::normalize(glm::cross(orientation, upDirection));
