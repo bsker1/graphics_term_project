@@ -24,36 +24,36 @@ GLfloat legVertices[] = {
   -0.25f, 0.0f, -0.50f,     1.0f, 0.0f, 0.0f,     0.0f, 1.0f,
 
   // 4-5, foot front
-   0.25f, 0.5f,  0.0f,     1.0f, 0.0f, 0.0f,     0.5f, 1.0f,
-  -0.25f, 0.5f,  0.0f,     1.0f, 0.0f, 0.0f,     0.0f, 1.0f,
+   0.25f, 0.5f,  0.0f,      1.0f, 0.0f, 0.0f,     0.5f, 1.0f,
+  -0.25f, 0.5f,  0.0f,      1.0f, 0.0f, 0.0f,     0.0f, 1.0f,
 
   // 6-7, foot back
   -0.25f, 0.5f, -0.50f,     1.0f, 0.0f, 0.0f,     0.0f, 0.5f,
-  0.25f, 0.5f, -0.50f,     1.0f, 0.0f, 0.0f,     0.5f, 0.5f,
+   0.25f, 0.5f, -0.50f,     1.0f, 0.0f, 0.0f,     0.5f, 0.5f,
 
   // 8-9, foot left
-  0.25f, 0.5f, -0.50f,     1.0f, 0.0f, 0.0f,     0.0f, 1.0f,
-  0.25f, 0.5f,  0.0f,     1.0f, 0.0f, 0.0f,     0.0f, 0.5f,
+   0.25f, 0.5f, -0.50f,     1.0f, 0.0f, 0.0f,     0.0f, 1.0f,
+   0.25f, 0.5f,  0.0f,      1.0f, 0.0f, 0.0f,     0.0f, 0.5f,
 
   // 10-11, foot right
   -0.25f, 0.5f, -0.50f,     1.0f, 0.0f, 0.0f,     0.5f, 1.0f,
-  -0.25f, 0.5f,  0.0f,     1.0f, 0.0f, 0.0f,     0.5f, 0.5f,
+  -0.25f, 0.5f,  0.0f,      1.0f, 0.0f, 0.0f,     0.5f, 0.5f,
 
   // 12-13, leg front
-  0.25f, 2.5f,  0.0f,     1.0f, 0.0f, 0.0f,     0.5f, 3.0f,
-  -0.25f, 2.5f,  0.0f,     1.0f, 0.0f, 0.0f,     0.0f, 3.0f,
+   0.25f, 2.5f,  0.0f,      1.0f, 0.0f, 0.0f,     0.5f, 3.0f,
+  -0.25f, 2.5f,  0.0f,      1.0f, 0.0f, 0.0f,     0.0f, 3.0f,
 
   // 14-15, leg back
   -0.25f, 2.5f, -0.50f,     1.0f, 0.0f, 0.0f,     0.0f, -1.5f,
-  0.25f, 2.5f, -0.50f,     1.0f, 0.0f, 0.0f,     0.5f, -1.5f,
+   0.25f, 2.5f, -0.50f,     1.0f, 0.0f, 0.0f,     0.5f, -1.5f,
 
   // 16-17, leg left
-  0.25f, 2.5f, -0.50f,     1.0f, 0.0f, 0.0f,     -2.0f, 1.0f,
-  0.25f, 2.5f,  0.0f,     1.0f, 0.0f, 0.0f,     -2.0f, 0.5f,
+   0.25f, 2.5f, -0.50f,     1.0f, 0.0f, 0.0f,     -2.0f, 1.0f,
+   0.25f, 2.5f,  0.0f,      1.0f, 0.0f, 0.0f,     -2.0f, 0.5f,
 
   // 18-19, leg right
   -0.25f, 2.5f, -0.50f,     1.0f, 0.0f, 0.0f,      2.5f, 1.0f,
-  -0.25f, 2.5f,  0.0f,     1.0f, 0.0f, 0.0f,      2.5f, 0.5f
+  -0.25f, 2.5f,  0.0f,      1.0f, 0.0f, 0.0f,      2.5f, 0.5f
 };
 
 GLuint legIndices[] = {
@@ -113,20 +113,29 @@ int main() {
   std::string objectFragPath = RESOURCES_PATH "shaders/object.frag";
   Shader objectShader(objectVertPath, objectFragPath);
 
-  // Create leg mesh
-  Mesh legMesh(legVertices, sizeof(legVertices), legIndices,
-    sizeof(legIndices), 3, 3, 2, 0);
-  
   // Load metal image into OpenGL texture
   std::string metalTexFilePath = RESOURCES_PATH "textures/metal.png";
   Texture metalTex(metalTexFilePath, GL_TEXTURE_2D, 0, GL_RGBA);
   // Apply texture to tex0 uniform in shader
   metalTex.TexUnit(objectShader, "tex0", 0);
+
+
+
+  // Create leg mesh
+  Mesh legMesh(legVertices, sizeof(legVertices), legIndices,
+    sizeof(legIndices), 3, 3, 2, 0);
+
+  // Position left and right legs
+  glm::vec3 legPosR = glm::vec3(-0.5f, 0.0f, 0.0f);
+  glm::vec3 legPosL = glm::vec3(0.5f, 0.0f, 0.0f);
+
+  // Generate leg model matrices from positions
+  glm::mat4 legModelR = glm::translate(glm::mat4(1.0f), legPosR);
+  glm::mat4 legModelL = glm::translate(glm::mat4(1.0f), legPosL);
+
+
   
   Camera camera(RESOLUTION_X, RESOLUTION_Y, glm::vec3(0.0f, 0.5f, 2.0f));
-
-
-
 
   glEnable(GL_DEPTH_TEST);
 
@@ -136,11 +145,10 @@ int main() {
     glClearColor(0.07f, 0.13f, 0.17f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-    objectShader.Activate();
-
     camera.Inputs(window);
     camera.UpdateMatrix(45.0f, RESOLUTION_X / (float)RESOLUTION_Y, 0.1f, 100.0f);
-    camera.SetMatrixUni(objectShader, "camMatrix");
+
+    objectShader.Activate();
 
     
 
@@ -152,7 +160,10 @@ int main() {
     metalTex.Bind();
 
     // Draw object mesh with object shader
-    legMesh.Draw(objectShader);
+    camera.SetMatrixUni(objectShader, "camMatrix");
+    legMesh.Draw(objectShader, legModelR);
+    camera.SetMatrixUni(objectShader, "camMatrix");
+    legMesh.Draw(objectShader, legModelL);
 
     // Swap front and back buffers
     glfwSwapBuffers(window);

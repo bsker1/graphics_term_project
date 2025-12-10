@@ -1,6 +1,9 @@
 #ifndef MESH_H
 #define MESH_H
 
+#include "glm/glm.hpp"
+#include "glm/gtc/type_ptr.hpp"
+
 #include "VertexArray.h"
 #include "IndexBuffer.h"
 #include "Shader.h"
@@ -22,7 +25,7 @@ class Mesh {
       const GLuint numDimensions, const GLuint numColorComponents,
       const GLuint numTextureCoords, const GLuint numNormalDimensions);
 
-    void Draw(Shader& shader);
+    void Draw(Shader& shader, const glm::mat4& model);
     void Delete();
 };
 

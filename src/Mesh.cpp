@@ -46,9 +46,10 @@ Mesh::Mesh(GLfloat* inVertices, const GLsizeiptr inVerticesSize,
     ibo.Unbind();
 }
 
-void Mesh::Draw(Shader& shader) {
+void Mesh::Draw(Shader& shader, const glm::mat4& model) {
   shader.Activate();
   vao.Bind();
+  glUniformMatrix4fv(glGetUniformLocation(shader.GetID(), "model"), 1, GL_FALSE, glm::value_ptr(model));
   glDrawElements(GL_TRIANGLES, indicesSize / sizeof(GLuint), GL_UNSIGNED_INT, 0);
 }
 
