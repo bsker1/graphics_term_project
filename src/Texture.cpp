@@ -18,12 +18,12 @@ Texture::Texture(const std::string imgFilePath, const GLenum texType, const GLui
   glBindTexture(texType, id);
 
   // Configure algorithm for resizing image
-  glTexParameteri(texType, GL_TEXTURE_MIN_FILTER, GL_NEAREST_MIPMAP_LINEAR);
-  glTexParameteri(texType, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+  glTexParameteri(texType, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+  glTexParameteri(texType, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
   // Configure texture repeat
-  glTexParameteri(texType, GL_TEXTURE_WRAP_S, GL_REPEAT);
-  glTexParameteri(texType, GL_TEXTURE_WRAP_T, GL_REPEAT);
+  glTexParameteri(texType, GL_TEXTURE_WRAP_S, GL_MIRRORED_REPEAT);
+  glTexParameteri(texType, GL_TEXTURE_WRAP_T, GL_MIRRORED_REPEAT);
 
   // Configuration for GL_CLAMP_TO_BORDER
   //float flatColor[] = {1.0f, 1.0f, 1.0f, 1.0f};

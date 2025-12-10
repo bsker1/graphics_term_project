@@ -15,8 +15,8 @@
 
 
 
-// Define vertices and indices for object
-GLfloat objectVertices[] = {
+// Define vertices and indices for leg
+GLfloat legVertices[] = {
   // 0-3, foot bottom
   -0.75f, 0.0f,  0.75f,     1.0f, 0.0f, 0.0f,     0.0f, 0.0f,
   -0.25f, 0.0f,  0.75f,     1.0f, 0.0f, 0.0f,     0.5f, 0.0f,
@@ -51,37 +51,23 @@ GLfloat objectVertices[] = {
   -0.25f, 2.5f, -0.25f,     1.0f, 0.0f, 0.0f,     -2.0f, 1.0f,
   -0.25f, 2.5f,  0.25f,     1.0f, 0.0f, 0.0f,     -2.0f, 0.5f,
 
+  // 18-19, leg right
   -0.75f, 2.5f, -0.25f,     1.0f, 0.0f, 0.0f,      2.5f, 1.0f,
   -0.75f, 2.5f,  0.25f,     1.0f, 0.0f, 0.0f,      2.5f, 0.5f
 };
 
-GLuint objectIndices[] = {
-  0, 1, 2,
-  2, 3, 0,
-
-  0, 1, 4,
-  4, 5, 0,
-
-  2, 3, 6,
-  6, 7, 2,
-
-  1, 2, 8,
-  8, 9, 1,
-
-  0, 3, 10,
-  10, 11, 0,
-
-  5, 4, 12,
-  12, 13, 5,
-
-  7, 6, 14,
-  14, 15, 7,
-
-  9, 8, 16,
-  16, 17, 9,
-
-  11, 10, 18,
-  18, 19, 11
+GLuint legIndices[] = {
+  // foot
+   0,  1,  2,  2,  3,  0,
+   0,  1,  4,  4,  5,  0,
+   2,  3,  6,  6,  7,  2,
+   1,  2,  8,  8,  9,  1,
+   0,  3, 10, 10, 11,  0,
+  // leg
+   5,  4, 12, 12, 13,  5,
+   7,  6, 14, 14, 15,  7,
+   9,  8, 16, 16, 17,  9,
+  11, 10, 18, 18, 19, 11
 };
 
 
@@ -127,9 +113,9 @@ int main() {
   std::string objectFragPath = RESOURCES_PATH "shaders/object.frag";
   Shader objectShader(objectVertPath, objectFragPath);
 
-  // Create object mesh
-  Mesh objectMesh(objectVertices, sizeof(objectVertices), objectIndices,
-    sizeof(objectIndices), 3, 3, 2, 0);
+  // Create leg mesh
+  Mesh legMesh(legVertices, sizeof(legVertices), legIndices,
+    sizeof(legIndices), 3, 3, 2, 0);
   
   // Load metal image into OpenGL texture
   std::string metalTexFilePath = RESOURCES_PATH "textures/metal.png";
@@ -166,7 +152,7 @@ int main() {
     metalTex.Bind();
 
     // Draw object mesh with object shader
-    objectMesh.Draw(objectShader);
+    legMesh.Draw(objectShader);
 
     // Swap front and back buffers
     glfwSwapBuffers(window);
@@ -179,7 +165,7 @@ int main() {
 
   // Cleanup OpenGL objects from memory
   objectShader.Delete();
-  objectMesh.Delete();
+  legMesh.Delete();
 
   // Cleanup GLFW window object
   glfwDestroyWindow(window);
