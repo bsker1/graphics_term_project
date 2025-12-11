@@ -18,42 +18,42 @@
 // Define vertices and indices for leg
 GLfloat legVertices[] = {
   // 0-3, foot bottom
-  -0.25f, 0.0f,  0.50f,     1.0f, 1.0f, 1.0f,     0.0f, 0.0f,
-   0.25f, 0.0f,  0.50f,     1.0f, 1.0f, 1.0f,     0.5f, 0.0f,
-   0.25f, 0.0f, -0.50f,     1.0f, 1.0f, 1.0f,     0.5f, 1.0f,
-  -0.25f, 0.0f, -0.50f,     1.0f, 1.0f, 1.0f,     0.0f, 1.0f,
+  -0.25f, 0.0f,  0.50f,     0.7f, 0.7f, 0.7f,     0.0f, 0.0f,
+   0.25f, 0.0f,  0.50f,     0.7f, 0.7f, 0.7f,     0.5f, 0.0f,
+   0.25f, 0.0f, -0.50f,     0.7f, 0.7f, 0.7f,     0.5f, 1.0f,
+  -0.25f, 0.0f, -0.50f,     0.7f, 0.7f, 0.7f,     0.0f, 1.0f,
 
   // 4-5, foot front
-   0.25f, 0.5f,  0.0f,      1.0f, 1.0f, 1.0f,     0.5f, 1.0f,
-  -0.25f, 0.5f,  0.0f,      1.0f, 1.0f, 1.0f,     0.0f, 1.0f,
+   0.25f, 0.5f,  0.0f,      0.7f, 0.7f, 0.7f,     0.5f, 1.0f,
+  -0.25f, 0.5f,  0.0f,      0.7f, 0.7f, 0.7f,     0.0f, 1.0f,
 
   // 6-7, foot back
-  -0.25f, 0.5f, -0.50f,     1.0f, 1.0f, 1.0f,     0.0f, 0.5f,
-   0.25f, 0.5f, -0.50f,     1.0f, 1.0f, 1.0f,     0.5f, 0.5f,
+  -0.25f, 0.5f, -0.50f,     0.7f, 0.7f, 0.7f,     0.0f, 0.5f,
+   0.25f, 0.5f, -0.50f,     0.7f, 0.7f, 0.7f,     0.5f, 0.5f,
 
   // 8-9, foot left
-   0.25f, 0.5f, -0.50f,     1.0f, 1.0f, 1.0f,     0.0f, 1.0f,
-   0.25f, 0.5f,  0.0f,      1.0f, 1.0f, 1.0f,     0.0f, 0.5f,
+   0.25f, 0.5f, -0.50f,     0.7f, 0.7f, 0.7f,     0.0f, 1.0f,
+   0.25f, 0.5f,  0.0f,      0.7f, 0.7f, 0.7f,     0.0f, 0.5f,
 
   // 10-11, foot right
-  -0.25f, 0.5f, -0.50f,     1.0f, 1.0f, 1.0f,     0.5f, 1.0f,
-  -0.25f, 0.5f,  0.0f,      1.0f, 1.0f, 1.0f,     0.5f, 0.5f,
+  -0.25f, 0.5f, -0.50f,     0.7f, 0.7f, 0.7f,     0.5f, 1.0f,
+  -0.25f, 0.5f,  0.0f,      0.7f, 0.7f, 0.7f,     0.5f, 0.5f,
 
   // 12-13, leg front
-   0.25f, 2.5f,  0.0f,      1.0f, 1.0f, 1.0f,     0.5f, 3.0f,
-  -0.25f, 2.5f,  0.0f,      1.0f, 1.0f, 1.0f,     0.0f, 3.0f,
+   0.25f, 2.5f,  0.0f,      0.7f, 0.7f, 0.7f,     0.5f, 3.0f,
+  -0.25f, 2.5f,  0.0f,      0.7f, 0.7f, 0.7f,     0.0f, 3.0f,
 
   // 14-15, leg back
-  -0.25f, 2.5f, -0.50f,     1.0f, 1.0f, 1.0f,     0.0f, -1.5f,
-   0.25f, 2.5f, -0.50f,     1.0f, 1.0f, 1.0f,     0.5f, -1.5f,
+  -0.25f, 2.5f, -0.50f,     0.7f, 0.7f, 0.7f,     0.0f, -1.5f,
+   0.25f, 2.5f, -0.50f,     0.7f, 0.7f, 0.7f,     0.5f, -1.5f,
 
   // 16-17, leg left
-   0.25f, 2.5f, -0.50f,     1.0f, 1.0f, 1.0f,     -2.0f, 1.0f,
-   0.25f, 2.5f,  0.0f,      1.0f, 1.0f, 1.0f,     -2.0f, 0.5f,
+   0.25f, 2.5f, -0.50f,     0.7f, 0.7f, 0.7f,     -2.0f, 1.0f,
+   0.25f, 2.5f,  0.0f,      0.7f, 0.7f, 0.7f,     -2.0f, 0.5f,
 
   // 18-19, leg right
-  -0.25f, 2.5f, -0.50f,     1.0f, 1.0f, 1.0f,      2.5f, 1.0f,
-  -0.25f, 2.5f,  0.0f,      1.0f, 1.0f, 1.0f,      2.5f, 0.5f
+  -0.25f, 2.5f, -0.50f,     0.7f, 0.7f, 0.7f,      2.5f, 1.0f,
+  -0.25f, 2.5f,  0.0f,      0.7f, 0.7f, 0.7f,      2.5f, 0.5f
 };
 
 GLuint legIndices[] = {
@@ -153,47 +153,47 @@ GLuint headIndices[] = {
 
 // Define vertices and indices for arm
 GLfloat armVertices[] = {
-  // 0-3, bottom
-  -0.25f, 0.0f,  0.25f,      1.0f, 1.0f, 1.0f,      0.0f,   0.0f,
-   0.25f, 0.0f,  0.25f,      1.0f, 1.0f, 1.0f,      0.5f,   0.0f,
-   0.25f, 0.0f, -0.25f,      1.0f, 1.0f, 1.0f,      0.5f,   0.5f,
-  -0.25f, 0.0f, -0.25f,      1.0f, 1.0f, 1.0f,      0.0f,   0.5f,
+  // 0-3, arm bottom
+  -0.25f, 0.0f,  0.25f,      0.7f, 0.7f, 0.7f,      0.0f,   0.0f,
+   0.25f, 0.0f,  0.25f,      0.7f, 0.7f, 0.7f,      0.5f,   0.0f,
+   0.25f, 0.0f, -0.25f,      0.7f, 0.7f, 0.7f,      0.5f,   0.5f,
+  -0.25f, 0.0f, -0.25f,      0.7f, 0.7f, 0.7f,      0.0f,   0.5f,
 
   // 4-5, arm front
-   0.25f, 2.0f,  0.25f,      1.0f, 1.0f, 1.0f,      0.5f,   1.0f,
-  -0.25f, 2.0f,  0.25f,      1.0f, 1.0f, 1.0f,      0.0f,   1.0f,
+   0.25f, 2.0f,  0.25f,      0.7f, 0.7f, 0.7f,      0.5f,   1.0f,
+  -0.25f, 2.0f,  0.25f,      0.7f, 0.7f, 0.7f,      0.0f,   1.0f,
 
   // 6-7, arm back
-  -0.25f, 2.0f, -0.25f,      1.0f, 1.0f, 1.0f,      0.0f,  -2.5f,
-   0.25f, 2.0f, -0.25f,      1.0f, 1.0f, 1.0f,      0.5f,  -2.5f,
+  -0.25f, 2.0f, -0.25f,      0.7f, 0.7f, 0.7f,      0.0f,  -2.5f,
+   0.25f, 2.0f, -0.25f,      0.7f, 0.7f, 0.7f,      0.5f,  -2.5f,
   
   // 8-9, arm left
-   0.25f, 2.0f, -0.25f,      1.0f, 1.0f, 1.0f,     -2.5f,   0.5f,
-   0.25f, 2.0f,  0.25f,      1.0f, 1.0f, 1.0f,     -2.5f,  -0.5f,
+   0.25f, 2.0f, -0.25f,      0.7f, 0.7f, 0.7f,     -2.5f,   0.5f,
+   0.25f, 2.0f,  0.25f,      0.7f, 0.7f, 0.7f,     -2.5f,  -0.5f,
   
   // 10-11, arm right
-  -0.25f, 2.0f, -0.25f,      1.0f, 1.0f, 1.0f,      3.0f,   0.5f,
-  -0.25f, 2.0f,  0.25f,      1.0f, 1.0f, 1.0f,      3.0f,   0.0f,
+  -0.25f, 2.0f, -0.25f,      0.7f, 0.7f, 0.7f,      3.0f,   0.5f,
+  -0.25f, 2.0f,  0.25f,      0.7f, 0.7f, 0.7f,      3.0f,   0.0f,
 
   // 12-13, shoulder bottom
-   0.5f,  2.0f,  0.25f,      1.0f, 1.0f, 1.0f,      3.75f,  0.0f,
-   0.5f,  2.0f, -0.25f,      1.0f, 1.0f, 1.0f,      3.75f,  0.5f,
+   0.5f,  2.0f,  0.25f,      0.7f, 0.7f, 0.7f,      3.75f,  0.0f,
+   0.5f,  2.0f, -0.25f,      0.7f, 0.7f, 0.7f,      3.75f,  0.5f,
 
   // 14-15, shoulder front
-   0.5f,  2.5f,  0.25f,      1.0f, 1.0f, 1.0f,      3.75f,  0.5f,
-  -0.25f, 2.5f,  0.25f,      1.0f, 1.0f, 1.0f,      3.0f,   0.5f,
+   0.5f,  2.5f,  0.25f,      0.7f, 0.7f, 0.7f,      3.75f,  0.5f,
+  -0.25f, 2.5f,  0.25f,      0.7f, 0.7f, 0.7f,      3.0f,   0.5f,
 
   // 16-17, shoulder back
-  -0.25f, 2.5f, -0.25f,      1.0f, 1.0f, 1.0f,      3.0f,   0.0f,
-   0.5f,  2.5f, -0.25f,      1.0f, 1.0f, 1.0f,      3.75f,  0.0f,
+  -0.25f, 2.5f, -0.25f,      0.7f, 0.7f, 0.7f,      3.0f,   0.0f,
+   0.5f,  2.5f, -0.25f,      0.7f, 0.7f, 0.7f,      3.75f,  0.0f,
 
   // 18-19, shoulder right
-  -0.25f, 2.5f,  0.25f,      1.0f, 1.0f, 1.0f,      3.5f,   0.0f,
-  -0.25f, 2.5f, -0.25f,      1.0f, 1.0f, 1.0f,      3.5f,   0.5f,
+  -0.25f, 2.5f,  0.25f,      0.7f, 0.7f, 0.7f,      3.5f,   0.0f,
+  -0.25f, 2.5f, -0.25f,      0.7f, 0.7f, 0.7f,      3.5f,   0.5f,
 
   // 20-21, shoulder top
-   0.5f,  2.5f,  0.25f,      1.0f, 1.0f, 1.0f,      4.25f,  0.0f,
-   0.5f,  2.5f, -0.25f,      1.0f, 1.0f, 1.0f,      4.25f,  0.5f
+   0.5f,  2.5f,  0.25f,      0.7f, 0.7f, 0.7f,      4.25f,  0.0f,
+   0.5f,  2.5f, -0.25f,      0.7f, 0.7f, 0.7f,      4.25f,  0.5f
 };
 
 GLuint armIndices[] = {
@@ -202,11 +202,166 @@ GLuint armIndices[] = {
    2,  3,  6,  6,  7,  2,
    1,  2,  8,  8,  9,  1,
    0,  3, 10, 10, 11,  0,
+
   10, 11, 12, 12, 13, 10,
   11, 12, 14, 14, 15, 11,
   13, 10, 16, 16, 17, 13,
   10, 11, 18, 18, 19, 10,
   19, 18, 20, 20, 21, 19
+};
+
+// Define vertices and indices for top
+GLfloat topVertices[] = {
+  // 0-3, bottom
+  -0.25f, 0.0f,  0.25f,      0.6f, 0.6f, 1.0f,      0.0f,   0.0f,
+   0.25f, 0.0f,  0.25f,      0.6f, 0.6f, 1.0f,      0.5f,   0.0f,
+   0.25f, 0.0f, -0.25f,      0.6f, 0.6f, 1.0f,      0.5f,   0.5f,
+  -0.25f, 0.0f, -0.25f,      0.6f, 0.6f, 1.0f,      0.0f,   0.5f,
+
+  // 4-5, arm front
+   0.25f, 2.0f,  0.25f,      0.6f, 0.6f, 1.0f,      0.5f,   1.0f,
+  -0.25f, 2.0f,  0.25f,      0.6f, 0.6f, 1.0f,      0.0f,   1.0f,
+
+  // 6-7, arm back
+  -0.25f, 2.0f, -0.25f,      0.6f, 0.6f, 1.0f,      0.0f,  -2.5f,
+   0.25f, 2.0f, -0.25f,      0.6f, 0.6f, 1.0f,      0.5f,  -2.5f,
+  
+  // 8-9, arm left
+   0.25f, 2.0f, -0.25f,      0.6f, 0.6f, 1.0f,     -2.5f,   0.5f,
+   0.25f, 2.0f,  0.25f,      0.6f, 0.6f, 1.0f,     -2.5f,  -0.5f,
+  
+  // 10-11, arm right
+  -0.25f, 2.0f, -0.25f,      0.6f, 0.6f, 1.0f,      3.0f,   0.5f,
+  -0.25f, 2.0f,  0.25f,      0.6f, 0.6f, 1.0f,      3.0f,   0.0f,
+
+  // 12-13, shoulder bottom
+   0.5f,  2.0f,  0.25f,      0.6f, 0.6f, 1.0f,      3.75f,  0.0f,
+   0.5f,  2.0f, -0.25f,      0.6f, 0.6f, 1.0f,      3.75f,  0.5f,
+
+  // 14-15, shoulder front
+   0.5f,  2.5f,  0.25f,      0.6f, 0.6f, 1.0f,      3.75f,  0.5f,
+  -0.25f, 2.5f,  0.25f,      0.6f, 0.6f, 1.0f,      3.0f,   0.5f,
+
+  // 16-17, shoulder back
+  -0.25f, 2.5f, -0.25f,      0.6f, 0.6f, 1.0f,      3.0f,   0.0f,
+   0.5f,  2.5f, -0.25f,      0.6f, 0.6f, 1.0f,      3.75f,  0.0f,
+
+  // 18-19, shoulder right
+  -0.25f, 2.5f,  0.25f,      0.6f, 0.6f, 1.0f,      3.5f,   0.0f,
+  -0.25f, 2.5f, -0.25f,      0.6f, 0.6f, 1.0f,      3.5f,   0.5f,
+
+  // 20-21, shoulder top
+   0.5f,  2.5f,  0.25f,      0.6f, 0.6f, 1.0f,      4.25f,  0.0f,
+   0.5f,  2.5f, -0.25f,      0.6f, 0.6f, 1.0f,      4.25f,  0.5f,
+
+  // 22-23, shoulder left
+   0.5f,  2.5f, -0.25f,      0.6f, 0.6f, 1.0f,      3.25f,  0.5f,
+   0.5f,  2.5f,  0.25f,      0.6f, 0.6f, 1.0f,      3.25f,  0.0f,
+  
+  // 24-25, extension top
+  -0.5f,  2.5f,  0.25f,      0.6f, 0.6f, 1.0f,      3.25f,  0.0f,
+  -0.5f,  2.5f, -0.25f,      0.6f, 0.6f, 1.0f,      3.25f,  0.5f,
+
+  // 26-27, extension right
+  -0.5f,  2.0f,  0.25f,      0.6f, 0.6f, 1.0f,      2.75f,  0.0f,
+  -0.5f,  2.0f, -0.25f,      0.6f, 0.6f, 1.0f,      2.75f,  0.5f,
+
+  // 28-29, extension bottom
+  -0.25f, 2.0f,  0.25f,      0.6f, 0.6f, 1.0f,      2.5f,   0.0f,
+  -0.25f, 2.0f, -0.25f,      0.6f, 0.6f, 1.0f,      2.5f,   0.5f,
+
+  // 30-31, extension front
+  -0.5f,  2.5f,  0.25f,      0.6f, 0.6f, 1.0f,      2.75f,  0.5f,
+  -0.5f,  2.0f,  0.25f,      0.6f, 0.6f, 1.0f,      2.75f,  0.0f,
+
+  // 32-33, extension back
+  -0.5f,  2.5f, -0.25f,      0.6f, 0.6f, 1.0f,      2.75f,  0.0f,
+  -0.5f,  2.0f, -0.25f,      0.6f, 0.6f, 1.0f,      2.75f,  0.5f
+};
+
+GLuint topIndices[] = {
+   0,  1,  2,  2,  3,  0,
+   0,  1,  4,  4,  5,  0,
+   2,  3,  6,  6,  7,  2,
+   1,  2,  8,  8,  9,  1,
+   0,  3, 10, 10, 11,  0,
+
+  10, 11, 12, 12, 13, 10,
+  11, 12, 14, 14, 15, 11,
+  13, 10, 16, 16, 17, 13,
+  10, 11, 18, 18, 19, 10,
+  19, 18, 20, 20, 21, 19,
+  12, 13, 22, 22, 23, 12,
+
+  19, 18, 24, 24, 25, 19,
+  25, 24, 26, 26, 27, 25,
+  27, 26, 28, 28, 29, 27,
+  11, 15, 30, 30, 31, 11,
+  10, 16, 32, 32, 33, 10
+};
+
+// Define vertices and indices for mouth
+GLfloat mouthVertices[] = {
+  // 0-3, bottom
+  -0.25f, 0.0f,  0.25f,      1.0f, 0.3f, 0.3f,      0.0f,   0.0f,
+   0.25f, 0.0f,  0.25f,      1.0f, 0.3f, 0.3f,      0.5f,   0.0f,
+   0.25f, 0.0f, -0.25f,      1.0f, 0.3f, 0.3f,      0.5f,   0.5f,
+  -0.25f, 0.0f, -0.25f,      1.0f, 0.3f, 0.3f,      0.0f,   0.5f,
+
+  // 4-5, arm front
+   0.25f, 2.0f,  0.25f,      1.0f, 0.3f, 0.3f,      0.5f,   1.0f,
+  -0.25f, 2.0f,  0.25f,      1.0f, 0.3f, 0.3f,      0.0f,   1.0f,
+
+  // 6-7, arm back
+  -0.25f, 2.0f, -0.25f,      1.0f, 0.3f, 0.3f,      0.0f,  -2.5f,
+   0.25f, 2.0f, -0.25f,      1.0f, 0.3f, 0.3f,      0.5f,  -2.5f,
+  
+  // 8-9, arm left
+   0.25f, 2.0f, -0.25f,      1.0f, 0.3f, 0.3f,     -2.5f,   0.5f,
+   0.25f, 2.0f,  0.25f,      1.0f, 0.3f, 0.3f,     -2.5f,  -0.5f,
+  
+  // 10-11, arm right
+  -0.25f, 2.0f, -0.25f,      1.0f, 0.3f, 0.3f,      3.0f,   0.5f,
+  -0.25f, 2.0f,  0.25f,      1.0f, 0.3f, 0.3f,      3.0f,   0.0f,
+
+  // 12-13, arm top
+   0.25f, 2.0f, -0.25f,      1.0f, 0.3f, 0.3f,      0.5f,   1.5f,
+  -0.25f, 2.0f, -0.25f,      1.0f, 0.3f, 0.3f,      0.0f,   1.5f
+};
+
+GLuint mouthIndices[] = {
+   0,  1,  2,  2,  3,  0,
+   0,  1,  4,  4,  5,  0,
+   2,  3,  6,  6,  7,  2,
+   1,  2,  8,  8,  9,  1,
+   0,  3, 10, 10, 11,  0,
+   5,  4, 12, 12, 13,  5
+};
+
+GLfloat eyeVertices[] = {
+  // 0-2, front
+  -0.25f, 0.0f, 0.25,     1.0f, 0.3f, 0.3f,     0.0f,  0.0f,
+   0.25f, 0.0f, 0.25,     1.0f, 0.3f, 0.3f,     0.5f,  0.0f,
+   0.0f,  0.5f, 0.25,     1.0f, 0.3f, 0.3f,     0.25f, 0.5f,
+  
+  // 3-4, bottom
+   0.25f, 0.0f, 0.0,      1.0f, 0.3f, 0.3f,     0.5f,  0.25f,
+  -0.25f, 0.0f, 0.0,      1.0f, 0.3f, 0.3f,     0.0f,  0.25f,
+
+  // 5-6, left
+   0.0f,  0.5f, 0.0,      1.0f, 0.3f, 0.3f,     0.25f, 0.75f,
+   0.25f, 0.0f, 0.0,      1.0f, 0.3f, 0.3f,     0.5f,  0.25f,
+
+  // 7-8, right
+   0.0f,  0.5f, 0.0,      1.0f, 0.3f, 0.3f,     0.25f, 0.75f,
+  -0.25f, 0.0f, 0.0,      1.0f, 0.3f, 0.3f,     0.0f,  0.25f
+};
+
+GLuint eyeIndices[] = {
+  0, 1, 2,
+  0, 1, 3, 3, 4, 0,
+  1, 2, 5, 5, 6, 1,
+  0, 2, 7, 7, 8, 0
 };
 
 
@@ -269,12 +424,20 @@ int main() {
     sizeof(headIndices), 3, 3, 2, 0);
   Mesh armMesh(armVertices, sizeof(armVertices), armIndices,
     sizeof(armIndices), 3, 3, 2, 0);
+  Mesh topMesh(topVertices, sizeof(topVertices), topIndices,
+    sizeof(topIndices), 3, 3, 2, 0);
+  Mesh mouthMesh(mouthVertices, sizeof(mouthVertices), mouthIndices,
+    sizeof(mouthIndices), 3, 3, 2, 0);
+  Mesh eyeMesh(eyeVertices, sizeof(eyeVertices), eyeIndices,
+    sizeof(eyeIndices), 3, 3, 2, 0);
   
 
 
   // Set scale of robot
   GLfloat robotScale = 0.2f;
   glm::vec3 robotScaleVec = glm::vec3(robotScale, robotScale, robotScale);
+  GLfloat addonsScale = 0.4 * robotScale;
+  glm::vec3 addonsScaleVec = glm::vec3(addonsScale, addonsScale, addonsScale);
   
   // Set models for each robot geometry
   glm::mat4 legModelR = glm::mat4(1.0f);
@@ -303,12 +466,27 @@ int main() {
   armModelL = glm::scale(armModelL, robotScaleVec);
 
   glm::mat4 antennaModel = glm::mat4(1.0f);
-  GLfloat antennaScale = 0.4 * robotScale;
-  glm::vec3 antennaScaleVec = glm::vec3(antennaScale, antennaScale, antennaScale);
   antennaModel = glm::rotate(antennaModel, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
   antennaModel = glm::rotate(antennaModel, glm::radians(180.0f), glm::vec3(1.0f, 0.0f, 0.0f));
   antennaModel = glm::translate(antennaModel, glm::vec3(-0.95f * robotScale, -7.0f * robotScale, 0.0f * robotScale));
-  antennaModel = glm::scale(antennaModel, antennaScaleVec);
+  antennaModel = glm::scale(antennaModel, addonsScaleVec);
+
+  glm::mat4 topModel = glm::mat4(1.0f);
+  topModel = glm::translate(topModel, glm::vec3(0.0f * robotScale, 6.5f * robotScale, 0.0f * robotScale));
+  topModel = glm::scale(topModel, addonsScaleVec);
+
+  glm::mat4 mouthModel = glm::mat4(1.0f);
+  mouthModel = glm::rotate(mouthModel, glm::radians(90.0f), glm::vec3(0.0f, 0.0f, 1.0f));
+  mouthModel = glm::translate(mouthModel, glm::vec3(5.25f * robotScale, -0.375f * robotScale, 0.75f * robotScale));
+  mouthModel = glm::scale(mouthModel, addonsScaleVec);
+
+  glm::mat4 eyeModelR = glm::mat4(1.0f);
+  eyeModelR = glm::translate(eyeModelR, glm::vec3(0.375f * robotScale, 5.875f * robotScale, 0.75f * robotScale));
+  eyeModelR = glm::scale(eyeModelR, addonsScaleVec);
+
+  glm::mat4 eyeModelL = glm::mat4(1.0f);
+  eyeModelL = glm::translate(eyeModelL, glm::vec3(-0.375f * robotScale, 5.875f * robotScale, 0.75f * robotScale));
+  eyeModelL = glm::scale(eyeModelL, addonsScaleVec);
 
 
   
@@ -345,6 +523,10 @@ int main() {
     armMesh.Draw(objectShader, armModelR);
     armMesh.Draw(objectShader, armModelL);
     armMesh.Draw(objectShader, antennaModel);
+    topMesh.Draw(objectShader, topModel);
+    mouthMesh.Draw(objectShader, mouthModel);
+    eyeMesh.Draw(objectShader, eyeModelR);
+    eyeMesh.Draw(objectShader, eyeModelL);
 
     // Swap front and back buffers
     glfwSwapBuffers(window);
