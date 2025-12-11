@@ -366,6 +366,29 @@ GLuint eyeIndices[] = {
 
 
 
+GLfloat lightVertices[] = {
+  -0.25f, -0.25f,  0.25f,      1.0f, 1.0f, 1.0f,
+   0.25f, -0.25f,  0.25f,      1.0f, 1.0f, 1.0f,
+   0.25f, -0.25f, -0.25f,      1.0f, 1.0f, 1.0f,
+  -0.25f, -0.25f, -0.25f,      1.0f, 1.0f, 1.0f,
+
+  -0.25f,  0.25f,  0.25f,      1.0f, 1.0f, 1.0f,
+   0.25f,  0.25f,  0.25f,      1.0f, 1.0f, 1.0f,
+   0.25f,  0.25f, -0.25f,      1.0f, 1.0f, 1.0f,
+  -0.25f,  0.25f, -0.25f,      1.0f, 1.0f, 1.0f,
+};
+
+GLuint lightIndices[] = {
+  0, 1, 2, 2, 3, 0,
+  0, 1, 5, 5, 4, 0,
+  1, 2, 6, 6, 5, 1,
+  2, 3, 7, 7, 6, 2,
+  0, 3, 7, 7, 4, 0,
+  4, 5, 6, 6, 7, 4
+};
+
+
+
 int main() {
   // Create GLFW windo object
   GLFWwindow* window;
@@ -407,6 +430,11 @@ int main() {
   std::string objectFragPath = RESOURCES_PATH "shaders/object.frag";
   Shader objectShader(objectVertPath, objectFragPath);
 
+  // Generate shader program from light shader files
+  std::string lightVertPath = RESOURCES_PATH "shaders/light.vert";
+  std::string lightFragPath = RESOURCES_PATH "shaders/light.frag";
+  Shader lightShader(lightVertPath, lightFragPath);
+
   // Load metal image into OpenGL texture
   std::string metalTexFilePath = RESOURCES_PATH "textures/metal.png";
   Texture metalTex(metalTexFilePath, GL_TEXTURE_2D, 0, GL_RGBA);
@@ -430,6 +458,9 @@ int main() {
     sizeof(mouthIndices), 3, 3, 2, 0);
   Mesh eyeMesh(eyeVertices, sizeof(eyeVertices), eyeIndices,
     sizeof(eyeIndices), 3, 3, 2, 0);
+  
+  Mesh lightMesh(lightVertices, sizeof(lightVertices), lightIndices,
+    sizeof(lightIndices), 3, 3, 0, 0);
   
 
 
@@ -488,6 +519,10 @@ int main() {
   eyeModelL = glm::translate(eyeModelL, glm::vec3(-0.375f * robotScale, 5.875f * robotScale, 0.75f * robotScale));
   eyeModelL = glm::scale(eyeModelL, addonsScaleVec);
 
+  // Set light model
+  glm::mat4 lightModel = glm::mat4(1.0f);
+  lightModel = glm::translate(lightModel, glm::vec3(0.0f, 2.5f, 0.0f));
+
 
   
   Camera camera(RESOLUTION_X, RESOLUTION_Y, glm::vec3(0.0f, 1.0f, 2.0f));
@@ -505,6 +540,8 @@ int main() {
 
     objectShader.Activate();
     camera.SetMatrixUni(objectShader, "camMatrix");
+    lightShader.Activate();
+    camera.SetMatrixUni(lightShader, "camMatrix");
 
     
 
@@ -527,6 +564,8 @@ int main() {
     mouthMesh.Draw(objectShader, mouthModel);
     eyeMesh.Draw(objectShader, eyeModelR);
     eyeMesh.Draw(objectShader, eyeModelL);
+
+    lightMesh.Draw(lightShader, lightModel);
 
     // Swap front and back buffers
     glfwSwapBuffers(window);
