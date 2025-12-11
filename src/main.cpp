@@ -269,24 +269,50 @@ int main() {
     sizeof(headIndices), 3, 3, 2, 0);
   Mesh armMesh(armVertices, sizeof(armVertices), armIndices,
     sizeof(armIndices), 3, 3, 2, 0);
+  
 
-  // Position meshes
-  glm::vec3 legPosR = glm::vec3(-0.5f, 0.0f, 0.25f);
-  glm::vec3 legPosL = glm::vec3(0.5f, 0.0f, 0.25f);
-  glm::vec3 torsoPos = glm::vec3(0.0f, 2.5f, 0.0f);
-  glm::vec3 headPos = glm::vec3(0.0f, 5.0f, 0.0f);
-  glm::vec3 armPosR = glm::vec3(-1.5f, 2.25f, 0.0f);
 
-  // Generate model matrices from positions
-  glm::mat4 legModelR = glm::translate(glm::mat4(1.0f), legPosR);
-  glm::mat4 legModelL = glm::translate(glm::mat4(1.0f), legPosL);
-  glm::mat4 torsoModel = glm::translate(glm::mat4(1.0f), torsoPos);
-  glm::mat4 headModel = glm::translate(glm::mat4(1.0f), headPos);
-  glm::mat4 armModelR = glm::translate(glm::mat4(1.0f), armPosR);
+  // Set scale of robot
+  GLfloat robotScale = 0.2f;
+  glm::vec3 robotScaleVec = glm::vec3(robotScale, robotScale, robotScale);
+  
+  // Set models for each robot geometry
+  glm::mat4 legModelR = glm::mat4(1.0f);
+  legModelR = glm::translate(legModelR, glm::vec3(-0.5f * robotScale, 0.0f * robotScale, 0.25f * robotScale));
+  legModelR = glm::scale(legModelR, robotScaleVec);
+
+  glm::mat4 legModelL = glm::mat4(1.0f);
+  legModelL = glm::translate(legModelL, glm::vec3(0.5f * robotScale, 0.0f * robotScale, 0.25f * robotScale));
+  legModelL = glm::scale(legModelL, robotScaleVec);
+
+  glm::mat4 torsoModel = glm::mat4(1.0f);
+  torsoModel = glm::translate(torsoModel, glm::vec3(0.0f * robotScale, 2.5f * robotScale, 0.0f * robotScale));
+  torsoModel = glm::scale(torsoModel, robotScaleVec);
+
+  glm::mat4 headModel = glm::mat4(1.0f);
+  headModel = glm::translate(headModel, glm::vec3(0.0f * robotScale, 5.0f * robotScale, 0.0f * robotScale));
+  headModel = glm::scale(headModel, robotScaleVec);
+
+  glm::mat4 armModelR = glm::mat4(1.0f);
+  armModelR = glm::translate(armModelR, glm::vec3(-1.5f * robotScale, 2.25f * robotScale, 0.0f * robotScale));
+  armModelR = glm::scale(armModelR, robotScaleVec);
+
+  glm::mat4 armModelL = glm::mat4(1.0f);
+  armModelL = glm::rotate(armModelL, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+  armModelL = glm::translate(armModelL, glm::vec3(-1.5f * robotScale, 2.25f * robotScale, 0.0f * robotScale));
+  armModelL = glm::scale(armModelL, robotScaleVec);
+
+  glm::mat4 antennaModel = glm::mat4(1.0f);
+  GLfloat antennaScale = 0.4 * robotScale;
+  glm::vec3 antennaScaleVec = glm::vec3(antennaScale, antennaScale, antennaScale);
+  antennaModel = glm::rotate(antennaModel, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+  antennaModel = glm::rotate(antennaModel, glm::radians(180.0f), glm::vec3(1.0f, 0.0f, 0.0f));
+  antennaModel = glm::translate(antennaModel, glm::vec3(-0.95f * robotScale, -7.0f * robotScale, 0.0f * robotScale));
+  antennaModel = glm::scale(antennaModel, antennaScaleVec);
 
 
   
-  Camera camera(RESOLUTION_X, RESOLUTION_Y, glm::vec3(0.0f, 0.5f, 2.0f));
+  Camera camera(RESOLUTION_X, RESOLUTION_Y, glm::vec3(0.0f, 1.0f, 2.0f));
 
   glEnable(GL_DEPTH_TEST);
 
@@ -297,7 +323,7 @@ int main() {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     camera.Inputs(window);
-    camera.UpdateMatrix(45.0f, RESOLUTION_X / (float)RESOLUTION_Y, 0.1f, 100.0f);
+    camera.UpdateMatrix(70.0f, RESOLUTION_X / (float)RESOLUTION_Y, 0.1f, 100.0f);
 
     objectShader.Activate();
     camera.SetMatrixUni(objectShader, "camMatrix");
@@ -317,6 +343,8 @@ int main() {
     torsoMesh.Draw(objectShader, torsoModel);
     headMesh.Draw(objectShader, headModel);
     armMesh.Draw(objectShader, armModelR);
+    armMesh.Draw(objectShader, armModelL);
+    armMesh.Draw(objectShader, antennaModel);
 
     // Swap front and back buffers
     glfwSwapBuffers(window);
